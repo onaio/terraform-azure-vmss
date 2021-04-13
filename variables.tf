@@ -86,3 +86,9 @@ variable "rolling_update_pause_time_between_batches" {
   description = "(optional) he wait time between completing the update for all virtual machines in one batch and starting the next batch"
   default     = "60S"
 }
+
+variable "tags" {
+  description = "(Optional) A mapping of tags which should be assigned to this Virtual Machine Scale Set."
+  type        = list(string)
+  default     = []
+}

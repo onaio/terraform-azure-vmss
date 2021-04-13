@@ -71,4 +71,5 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
       pause_time_between_batches              = var.rolling_update_pause_time_between_batches
     }
   }
+  tags = var.tags
 }
