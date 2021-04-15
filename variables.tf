@@ -89,6 +89,6 @@ variable "rolling_update_pause_time_between_batches" {
 
 variable "tags" {
   description = "(Optional) A mapping of tags which should be assigned to this Virtual Machine Scale Set."
-  type        = list(string)
-  default     = []
+  type        = map(string)
+  default     = {}
 }
