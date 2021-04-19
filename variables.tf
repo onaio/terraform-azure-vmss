@@ -92,3 +92,28 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+# https://docs.microsoft.com/en-us/azure/virtual-machines/extensions/overview
+variable "marketplace_extensions" {
+  description = "Extensions to be installed on all the virtual machines"
+  type = list(object({
+    name               = string
+    publisher          = string
+    type               = string
+    version            = string
+    protected_settings = map(string)
+    settings           = map(string)
+  }))
+
+  # use Azure monitor agent extension as an example
+  default = [
+    {
+      name               = "Monitoring-agent"
+      publisher          = "Microsoft.Azure.Monitor"
+      type               = "AzureMonitorLinuxAgent"
+      version            = "1.5"
+      protected_settings = null
+      settings           = null
+    }
+  ]
+}
