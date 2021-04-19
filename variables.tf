@@ -101,8 +101,8 @@ variable "marketplace_extensions" {
     publisher          = string
     type               = string
     version            = string
-    protected_settings = string
-    settings           = string
+    protected_settings = map(string)
+    settings           = map(string)
   }))
 
   # use Azure monitor agent extension as an example

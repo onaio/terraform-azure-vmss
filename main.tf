@@ -81,4 +81,6 @@ resource "azurerm_virtual_machine_scale_set_extension" "agent" {
   publisher                    = var.marketplace_extensions[count.index].publisher
   type                         = var.marketplace_extensions[count.index].type
   type_handler_version         = var.marketplace_extensions[count.index].version
+  settings                     = jsonencode(var.marketplace_extensions[count.index].settings)
+  protected_settings           = jsonencode(var.marketplace_extensions[count.index].protected_settings)
 }
