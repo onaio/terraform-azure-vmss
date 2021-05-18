@@ -117,3 +117,44 @@ variable "marketplace_extensions" {
     }
   ]
 }
+
+variable "network_security_rules" {
+  description = "List of objects representing security rules"
+  type = list(object({
+    name                       = string
+    priority                   = number
+    direction                  = string
+    access                     = string
+    protocol                   = string
+    source_port_range          = string
+    destination_port_range     = string
+    source_address_prefix      = string
+    destination_address_prefix = string
+  }))
+
+  default = [
+    {
+      name                       = "ssh"
+      priority                   = 100
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*" #This specifies on which ports traffic will be allowed or denied by this rule
+      destination_port_range     = "22"
+      source_address_prefix      = "VirtualNetwork" #CIDR or source IP range or * to match any IP. Tags such as ‘VirtualNetwork’, ‘AzureLoadBalancer’ and ‘Internet’ can also be used.
+      destination_address_prefix = "*"
+    },
+    {
+      name                       = "http"
+      priority                   = 200
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "Tcp"
+      source_port_range          = "*" #This specifies on which ports traffic will be allowed or denied by this rule
+      destination_port_range     = "80"
+      source_address_prefix      = "0.0.0.0/0" #CIDR or source IP range or * to match any IP. Tags such as ‘VirtualNetwork’, ‘AzureLoadBalancer’ and ‘Internet’ can also be used.
+      destination_address_prefix = "*"
+    }
+  ]
+
+}
