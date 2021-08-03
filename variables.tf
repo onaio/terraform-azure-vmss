@@ -12,6 +12,12 @@ variable "virtual_network_name" {
   default     = ""
 }
 
+variable "application_gateway_backend_address_pool_ids" {
+  type        = list(string)
+  description = "List of backend address pool IDs to attach the scale set to"
+  default     = []
+}
+
 variable "subnet_name" {
   type        = string
   description = "(Optional) Name of the Subnet to place the resources in"
