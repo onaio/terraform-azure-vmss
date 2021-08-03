@@ -75,6 +75,8 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
       primary   = true
       subnet_id = data.azurerm_subnet.subnet.id
 
+      application_gateway_backend_address_pool_ids = var.application_gateway_backend_address_pool_ids
+
       dynamic "public_ip_address" {
         for_each = var.assign_public_ip_to_each_vm_in_vmss ? [{}] : []
         content {
